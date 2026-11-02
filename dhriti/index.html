@@ -104,6 +104,8 @@ body{background:var(--ground);color:var(--ink);font-family:var(--f-display);over
   color:rgba(246,240,225,.85);animation:pulse 2.4s ease-in-out infinite;transition:opacity .4s}
 @keyframes pulse{50%{opacity:.45}}
 .gate.busy{cursor:default}
+.book,.cover{will-change:transform}
+.gate.busy .foil,.gate.busy .pp-hint{animation-play-state:paused}
 .gate.busy .pp-hint{opacity:0;animation:none}
 
 /* ---------- arched card ---------- */
@@ -489,7 +491,7 @@ p{margin:0}
             <div class="stringwrap" aria-hidden="true"><span class="string" id="string"></span></div>
             <div class="shade" id="shf"></div>
           </div>
-          <div class="cover-back" id="cback" aria-hidden="true"><span>BON VOYAGE</span><div class="shade" id="shb"></div></div>
+          <div class="cover-back" id="cback" aria-hidden="true"><div class="shade" id="shb"></div></div>
         </div>
       </div>
       <p class="pp-hint">TAP TO OPEN YOUR PASSPORT</p>
@@ -584,8 +586,7 @@ function setCover(th){
   const r=th*Math.PI/180;
   cover.style.transform=`rotateY(${-th}deg)`;
   const front=th<90;
-  cface.style.visibility=front?'visible':'hidden';
-  cback.style.visibility=front?'hidden':'visible';
+  if(setCover.front!==front){setCover.front=front;cface.style.visibility=front?'visible':'hidden';cback.style.visibility=front?'hidden':'visible'}
   shf.style.opacity=front?(th/90)*.55:0;                    /* front darkens as it turns away from the light */
   shb.style.opacity=front?.5:((180-th)/90)*.5;              /* inside brightens as it settles open */
   const lift=Math.min(1,th/12);
@@ -636,24 +637,28 @@ async function openGate(){
 async function closeGate(){
   if(!opened||animating)return;animating=true;
   anims.forEach(a=>a.cancel());anims=[];
-  const k=spreadK(),s=fillScale();
-  /* the page under the zoomed-in passport: fade the card's text away while the passport fades in over it */
-  setCover(180);setBook(0,s);ptag.style.opacity=0;stringEl.style.opacity=0;
+  const k=spreadK(),sc=fillScale();
+  setCover(180);setBook(0,sc);ptag.style.opacity=0;stringEl.style.opacity=0;
   gate.style.opacity=0;gate.hidden=false;gate.classList.add('busy');
   if(cur>=0)scenes[cur].classList.remove('on');
-  await tween(650,easeIO,e=>{gate.style.opacity=e});
-  gate.style.opacity='';cur=-1;placePlane();
-  /* one continuous move: zoom out to the open spread, then the cover swings shut, overlapping smoothly */
+  await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));   /* let the first frame paint before timing starts */
   const ss=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t)};
-  await tween(2600,t=>t,e=>{
-    const z=ss(0,.45,e),q=ss(.45,1,e),th=180*(1-ss(.32,1,e));
+  const T=3300; let planeGo=false;
+  await tween(T,t=>t,e=>{
+    const ms=e*T;
+    gate.style.opacity=ss(0,650,ms);                       /* passport fades in over the card */
+    const m=Math.max(0,(ms-450)/(T-450));                  /* motion starts while the fade finishes */
+    const z=ss(0,.45,m),q=ss(.45,1,m),th=180*(1-ss(.3,1,m));
     setCover(th);
-    setBook(lerp(lerp(0,k*50,z),0,q),lerp(lerp(s,k,z),1,q));
+    setBook(lerp(lerp(0,k*50,z),0,q),lerp(lerp(sc,k,z),1,q));
+    if(!planeGo&&m>.84){                                   /* plane starts flying home while the cover settles */
+      planeGo=true;ptag.style.opacity='';stringEl.style.opacity='';
+      run(ptag,planeFrames(),{duration:1400,direction:'reverse',fill:'both',easing:'cubic-bezier(.35,0,.6,.45)'});
+      run(stringEl,stringFrames,{duration:450,delay:950,direction:'reverse',fill:'both',easing:'ease-out'});
+    }
   });
-  book.style.transform='';ptag.style.opacity='';stringEl.style.opacity='';
-  run(ptag,planeFrames(),{duration:1500,direction:'reverse',easing:'cubic-bezier(.35,0,.6,.45)'});
-  run(stringEl,stringFrames,{duration:500,delay:1000,direction:'reverse',easing:'ease-out'});
-  await wait(1550);
+  gate.style.opacity='';book.style.transform='';cur=-1;placePlane();
+  await wait(1000);
   anims.forEach(a=>a.cancel());anims=[];
   opened=false;animating=false;gate.classList.remove('busy');
 }
