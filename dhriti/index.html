@@ -136,6 +136,10 @@ p{margin:0}
 .mem{font-style:normal;font-family:var(--f-caps);font-size:.8em;letter-spacing:.14em;color:var(--gold)}
 .lede{font-size:17px;line-height:1.45;font-style:italic;color:var(--ink);max-width:28ch}
 .families{display:grid;grid-template-columns:1fr 1px 1fr;gap:16px;align-items:start;width:100%;margin-top:4px}
+.nw{white-space:nowrap}
+.families b.many .nw{font:inherit;letter-spacing:normal;color:inherit;text-transform:none}
+.families b.many{font-size:14.5px;line-height:1.45}
+.families:has(b.many){grid-template-columns:1.7fr 1px 1fr;gap:12px}
 .families.one{grid-template-columns:1fr}
 .families i{height:44px;background:var(--line);opacity:.6}
 .families b{display:block;font-weight:500;font-size:17px}
