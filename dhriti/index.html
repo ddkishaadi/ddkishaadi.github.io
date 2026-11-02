@@ -45,8 +45,9 @@
   --f-script:"Pinyon Script","Snell Roundhand","Apple Chancery",cursive;
   --f-caps:"Cinzel","Trajan Pro",Georgia,serif;
 }
-html,body{height:100%;height:100dvh}
-html{-webkit-text-size-adjust:100%;touch-action:manipulation}
+html{height:100%;height:100dvh}
+body{height:100%}
+html{-webkit-text-size-adjust:100%;touch-action:manipulation;box-sizing:border-box}
 [hidden]{display:none!important}
 body{background:var(--ground);color:var(--ink);font-family:var(--f-display);overflow:hidden;-webkit-font-smoothing:antialiased}
 .stage{height:100%;display:grid;place-items:center}
@@ -100,7 +101,7 @@ body{background:var(--ground);color:var(--ink);font-family:var(--f-display);over
 .ptag{position:absolute;left:50%;top:50%;z-index:2;width:56%;aspect-ratio:1;transform:translate(-50%,-50%) rotate(-14deg);border:0;padding:0;background:none;cursor:pointer}
 .ptag svg{width:100%;height:100%;display:block;filter:drop-shadow(2px 4px 3px rgba(10,20,12,.45))}
 .ptag:focus-visible{outline:2px solid var(--line);outline-offset:4px;border-radius:12px}
-.pp-hint{position:absolute;left:0;right:0;bottom:calc(7% + env(safe-area-inset-bottom,0px));margin:0;text-align:center;font-family:var(--f-caps);font-size:10.5px;letter-spacing:.3em;
+.pp-hint{position:absolute;left:0;right:0;bottom:calc(7%);margin:0;text-align:center;font-family:var(--f-caps);font-size:10.5px;letter-spacing:.3em;
   color:rgba(246,240,225,.85);animation:pulse 2.4s ease-in-out infinite;transition:opacity .4s}
 @keyframes pulse{50%{opacity:.45}}
 .gate.busy{cursor:default}
@@ -116,7 +117,7 @@ body{background:var(--ground);color:var(--ink);font-family:var(--f-display);over
 .card .lace.br{bottom:-4%;right:-10%;width:58%;transform:rotate(180deg)}
 
 .content{position:absolute;left:12%;right:12%;top:19%;bottom:calc(5.6% + 108px)}
-.tag{position:absolute;left:0;right:0;bottom:calc(5.6% + 74px + env(safe-area-inset-bottom,0px));z-index:3;margin:0;text-align:center;font-family:var(--f-caps);font-size:11px;letter-spacing:.16em;color:var(--gold)}
+.tag{position:absolute;left:0;right:0;bottom:calc(5.6% + 74px);z-index:3;margin:0;text-align:center;font-family:var(--f-caps);font-size:11px;letter-spacing:.16em;color:var(--gold)}
 .pp-tag{margin:-1cqw 0 0;font-family:var(--f-caps);font-size:3.6cqw;letter-spacing:.16em;color:rgba(246,240,225,.8)}
 .scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:safe center;text-align:center;gap:clamp(10px,2.3vh,20px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;
   opacity:0;filter:blur(8px);transform:translateY(14px);pointer-events:none;transition:opacity .7s ease,filter .7s ease,transform .7s ease}
@@ -241,7 +242,7 @@ p{margin:0}
 .field::placeholder{color:#b9c2a6;font-style:italic}
 
 /* ---------- controls ---------- */
-.nav{position:absolute;left:0;right:0;bottom:calc(5.6% + 20px + env(safe-area-inset-bottom,0px));z-index:3;display:flex;justify-content:center;align-items:center;gap:12px;padding-inline:12%}
+.nav{position:absolute;left:0;right:0;bottom:calc(5.6% + 20px);z-index:3;display:flex;justify-content:center;align-items:center;gap:12px;padding-inline:12%}
 .count{font-family:var(--f-caps);font-size:9.5px;letter-spacing:.2em;color:var(--ink-soft);font-variant-numeric:tabular-nums;min-width:3.2em;text-align:center}
 .navbtn{appearance:none;border:1px solid rgba(212,180,106,.6);background:rgba(66,88,66,.94);color:var(--ink);border-radius:999px;min-height:36px;padding:0 18px;
   font-family:var(--f-display);font-style:italic;font-size:14.5px;display:flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 4px 14px -8px rgba(10,20,12,.6)}
@@ -252,8 +253,8 @@ p{margin:0}
 /* shorter phones (iPhone SE, small Androids) */
 @media (max-height:720px){
   .content{top:16.5%;bottom:calc(5.6% + 96px);left:10%;right:10%}
-  .nav{bottom:calc(5.6% + 16px + env(safe-area-inset-bottom,0px))}
-  .tag{bottom:calc(5.6% + 66px + env(safe-area-inset-bottom,0px));font-size:10px}
+  .nav{bottom:calc(5.6% + 16px)}
+  .tag{bottom:calc(5.6% + 66px);font-size:10px}
   .names-stack{font-size:clamp(40px,12vw,52px)}
   .medallion{width:124px;height:160px}
   .medallion .d{font-size:50px}
