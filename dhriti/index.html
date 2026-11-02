@@ -141,9 +141,17 @@ p{margin:0}
 .nw{white-space:nowrap}
 .families b.many .nw{font:inherit;letter-spacing:normal;color:inherit;text-transform:none}
 .families b.many{font-size:14.5px;line-height:1.45}
-.families:has(b.many){display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
-.families:has(b.many) i{width:48px;height:1px;flex:none}
-.families:has(b.many) b.many{max-width:30ch;text-wrap:balance}
+/* two columns around a centred divider: equal gap each side of the line, equal space at both outer edges */
+.families:has(b.many){display:flex;justify-content:center;align-items:stretch;gap:18px;width:100%}
+.families:has(b.many)>div:first-child{text-align:right;flex:0 1 auto;max-width:58%}
+.families:has(b.many)>div:last-child{text-align:left;flex:none}
+.families:has(b.many) i{width:1px;height:auto;flex:none}
+.families:has(b.many) b.many{display:inline-block;text-wrap:balance}
+@media (max-width:359px){
+  .families:has(b.many){flex-direction:column;align-items:center;gap:12px}
+  .families:has(b.many)>div{text-align:center!important;max-width:100%!important}
+  .families:has(b.many) i{width:44px;height:1px}
+}
 .families.one{grid-template-columns:1fr}
 .families i{height:44px;background:var(--line);opacity:.6}
 .families b{display:block;font-weight:500;font-size:17px}
@@ -568,6 +576,9 @@ function placePlane(){
   plane.style.transform=`translate(${pt.x*sx}px,${pt.y*sy}px) translate(-50%,-50%) rotate(${deg}deg)`;
 }
 placePlane();addEventListener('resize',placePlane);
+function fitNames(){const b=document.querySelector('.families b.many');if(!b)return;b.style.width='';if(getComputedStyle(b.parentNode.parentNode).flexDirection=='column')return;const r=document.createRange();r.selectNodeContents(b);
+  const w=Math.max(0,...[...r.getClientRects()].map(x=>x.width));if(w)b.style.width=Math.ceil(w)+'px'}
+fitNames();addEventListener('resize',fitNames);document.fonts&&document.fonts.ready.then(fitNames);
 
 /* ---------- personal links: add #Guest-Name to the link ---------- */
 try{const g=decodeURIComponent(location.hash.slice(1)).replace(/[-_]+/g,' ').trim();
