@@ -1,6 +1,6 @@
 # Dhriti & Dhaval · Wedding Invitation
 
-A mobile web invitation for #DDKiShaadi, 20 & 21 February 2027, Bhillai, Chhattisgarh.
+A mobile web invitation for #DDKiShaadi, 20 & 21 February 2027, Bhilai, Chhattisgarh.
 
 Guests tap the gold plane on the passport cover. The plane flies off, the passport opens, and they move through the pages with Back and Next.
 
