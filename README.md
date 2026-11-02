@@ -7,7 +7,7 @@ Guests tap the gold plane on the passport cover. The plane flies off, the passpo
 ## Personal links
 Add a guest's name to the end of the link to show it on their boarding pass:
 
-    https://<your-site>/#Rohan-Sharma
+    https://ddkishaadi.github.io/#Rohan-Sharma
 
 ## Publish with GitHub Pages
 Settings → Pages → Deploy from a branch → `main` / root. The invitation is `index.html`, a single file with no build step.
