@@ -637,9 +637,11 @@ async function openGate(){
 async function closeGate(){
   if(!opened||animating)return;animating=true;
   anims.forEach(a=>a.cancel());anims=[];
+  /* show the (invisible) passport first so its size can be measured; measuring while hidden gives 0 */
+  gate.style.opacity=0;gate.hidden=false;gate.classList.add('busy');
+  book.style.transform='';void book.offsetWidth;
   const k=spreadK(),sc=fillScale();
   setCover(180);setBook(0,sc);ptag.style.opacity=0;stringEl.style.opacity=0;
-  gate.style.opacity=0;gate.hidden=false;gate.classList.add('busy');
   if(cur>=0)scenes[cur].classList.remove('on');
   await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));   /* let the first frame paint before timing starts */
   const ss=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t)};
