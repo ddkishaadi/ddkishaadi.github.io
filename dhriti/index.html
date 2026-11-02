@@ -113,10 +113,10 @@ body{background:var(--ground);color:var(--ink);font-family:var(--f-display);over
 .card .lace.tl{top:-3%;left:-9%;width:74%}
 .card .lace.br{bottom:-4%;right:-10%;width:58%;transform:rotate(180deg)}
 
-.content{position:absolute;left:12%;right:12%;top:19%;bottom:calc(5.5% + 84px)}
-.tag{position:absolute;left:0;right:0;bottom:calc(5.5% + 50px + env(safe-area-inset-bottom,0px));z-index:3;margin:0;text-align:center;font-family:var(--f-caps);font-size:11px;letter-spacing:.16em;color:var(--gold)}
+.content{position:absolute;left:12%;right:12%;top:19%;bottom:calc(5.6% + 108px)}
+.tag{position:absolute;left:0;right:0;bottom:calc(5.6% + 74px + env(safe-area-inset-bottom,0px));z-index:3;margin:0;text-align:center;font-family:var(--f-caps);font-size:11px;letter-spacing:.16em;color:var(--gold)}
 .pp-tag{margin:-1cqw 0 0;font-family:var(--f-caps);font-size:3.6cqw;letter-spacing:.16em;color:rgba(246,240,225,.8)}
-.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:safe center;text-align:center;gap:clamp(8px,1.8vh,14px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:safe center;text-align:center;gap:clamp(10px,2.3vh,20px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;
   opacity:0;filter:blur(8px);transform:translateY(14px);pointer-events:none;transition:opacity .7s ease,filter .7s ease,transform .7s ease}
 .scene.on{opacity:1;filter:blur(0);transform:none;pointer-events:auto}
 .scene.off{opacity:0;filter:blur(8px);transform:translateY(-14px)}
@@ -135,7 +135,7 @@ h1,h2,h3{margin:0;font-weight:500;text-wrap:balance}
 p{margin:0}
 .mem{font-style:normal;font-family:var(--f-caps);font-size:.8em;letter-spacing:.14em;color:var(--gold)}
 .lede{font-size:17px;line-height:1.45;font-style:italic;color:var(--ink);max-width:28ch}
-.families{display:grid;grid-template-columns:1fr 1px 1fr;gap:16px;align-items:center;width:100%;margin-top:4px}
+.families{display:grid;grid-template-columns:1fr 1px 1fr;gap:16px;align-items:start;width:100%;margin-top:4px}
 .families.one{grid-template-columns:1fr}
 .families i{height:44px;background:var(--line);opacity:.6}
 .families b{display:block;font-weight:500;font-size:17px}
@@ -213,9 +213,9 @@ p{margin:0}
 .pfields dt{font-family:var(--f-caps);font-size:8px;letter-spacing:.2em;color:var(--ink-soft)}
 .pfields dd{margin:0;font-size:15px;font-weight:500;line-height:1.2;overflow-wrap:anywhere}
 .perf{position:relative;border-top:1px dashed var(--line);margin:0 12px}
-.perf::before,.perf::after{content:"";position:absolute;top:-9px;width:16px;height:16px;border-radius:50%;background:#617860;border:1px solid var(--line)}
-.perf::before{left:-21px;clip-path:inset(0 0 0 50%)}
-.perf::after{right:-21px;clip-path:inset(0 50% 0 0)}
+.perf::before,.perf::after{content:"";position:absolute;top:-9px;width:18px;height:18px;border-radius:50%;background:#617860}
+.perf::before{left:-22px}
+.perf::after{right:-22px}
 .stub{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px 12px}
 .barcode{height:30px;flex:1;max-width:150px;opacity:.8;background:repeating-linear-gradient(90deg,var(--deep) 0 1px,transparent 1px 3px,var(--deep) 3px 5px,transparent 5px 6px,var(--deep) 6px 7px,transparent 7px 10px,var(--deep) 10px 12px,transparent 12px 13px)}
 .stub span{font-family:var(--f-caps);font-size:8.5px;letter-spacing:.18em;color:var(--ink-soft);text-align:right;line-height:1.5}
@@ -224,7 +224,7 @@ p{margin:0}
 .field::placeholder{color:#b9c2a6;font-style:italic}
 
 /* ---------- controls ---------- */
-.nav{position:absolute;left:0;right:0;bottom:calc(5.5% + env(safe-area-inset-bottom,0px));z-index:3;display:flex;justify-content:center;align-items:center;gap:12px;padding-inline:12%}
+.nav{position:absolute;left:0;right:0;bottom:calc(5.6% + 20px + env(safe-area-inset-bottom,0px));z-index:3;display:flex;justify-content:center;align-items:center;gap:12px;padding-inline:12%}
 .count{font-family:var(--f-caps);font-size:9.5px;letter-spacing:.2em;color:var(--ink-soft);font-variant-numeric:tabular-nums;min-width:3.2em;text-align:center}
 .navbtn{appearance:none;border:1px solid rgba(212,180,106,.6);background:rgba(66,88,66,.94);color:var(--ink);border-radius:999px;min-height:36px;padding:0 18px;
   font-family:var(--f-display);font-style:italic;font-size:14.5px;display:flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 4px 14px -8px rgba(10,20,12,.6)}
@@ -234,8 +234,9 @@ p{margin:0}
 .scene::-webkit-scrollbar{display:none}
 /* shorter phones (iPhone SE, small Androids) */
 @media (max-height:720px){
-  .content{top:17%;bottom:calc(5.5% + 76px);left:10%;right:10%}
-  .tag{bottom:calc(5.5% + 44px + env(safe-area-inset-bottom,0px));font-size:10px}
+  .content{top:16.5%;bottom:calc(5.6% + 96px);left:10%;right:10%}
+  .nav{bottom:calc(5.6% + 16px + env(safe-area-inset-bottom,0px))}
+  .tag{bottom:calc(5.6% + 66px + env(safe-area-inset-bottom,0px));font-size:10px}
   .names-stack{font-size:clamp(40px,12vw,52px)}
   .medallion{width:124px;height:160px}
   .medallion .d{font-size:50px}
@@ -257,6 +258,13 @@ p{margin:0}
   .medallion .d{font-size:42px}
   .map{width:min(120px,42%)}
   .count-big{font-size:54px}
+  .dates .medallion{max-width:92px}
+  .dates .medallion .d{font-size:34px}
+  .dates .pill{min-height:26px}
+  .day{gap:7px}
+  .ev{font-size:15px}
+  .ev small{margin-bottom:4px}
+  .scene{gap:9px}
 }
 /* narrow phones */
 @media (max-width:360px){
@@ -307,7 +315,7 @@ p{margin:0}
           <h2 class="names-line">Dhriti <span class="amp">&amp;</span> Dhaval</h2>
           <svg class="orn" viewBox="0 0 150 14" aria-hidden="true"><path d="M0 7H62M88 7H150" stroke="currentColor" stroke-width=".8"/><path d="M75 1.5L80.5 7 75 12.5 69.5 7Z" fill="none" stroke="currentColor" stroke-width=".8"/><circle cx="64" cy="7" r="1.2" fill="currentColor"/><circle cx="86" cy="7" r="1.2" fill="currentColor"/></svg>
           <p class="lede">With the blessings of God and our parents, we request the joy of your company as our daughter Dhriti takes her seven vows with Dhaval, son of Chhaya, and begins a new life together.</p>
-          <p class="eyebrow" style="margin-top:6px">With love from</p>
+          <p class="eyebrow" style="margin-top:clamp(10px,2.5vh,22px)">With love from</p>
           <div class="families one">
             <div><b>Uma &amp; Govind</b><span>THE NANDANWARS</span></div>
           </div>
@@ -529,7 +537,7 @@ function show(i){
   document.getElementById('count').textContent=`${i+1} / ${scenes.length}`;
   placePlane();
 }
-const advance=dir=>{if(animating)return;if(!opened){if(dir>0)openGate();return}const n=cur+dir;if(n>=scenes.length)show(0);else if(n<0)closeGate();else show(n)};
+const advance=dir=>{if(animating)return;if(!opened){if(dir>0)openGate();return}const n=cur+dir;if(n>=scenes.length)closeGate();else if(n<0)closeGate();else show(n)};
 document.getElementById('next').addEventListener('click',()=>advance(1));
 document.getElementById('prev').addEventListener('click',()=>advance(-1));
 let wheelLock=0;
