@@ -141,7 +141,9 @@ p{margin:0}
 .nw{white-space:nowrap}
 .families b.many .nw{font:inherit;letter-spacing:normal;color:inherit;text-transform:none}
 .families b.many{font-size:14.5px;line-height:1.45}
-.families:has(b.many){grid-template-columns:1.7fr 1px 1fr;gap:12px}
+.families:has(b.many){display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.families:has(b.many) i{width:48px;height:1px;flex:none}
+.families:has(b.many) b.many{max-width:30ch;text-wrap:balance}
 .families.one{grid-template-columns:1fr}
 .families i{height:44px;background:var(--line);opacity:.6}
 .families b{display:block;font-weight:500;font-size:17px}
@@ -320,7 +322,7 @@ p{margin:0}
         <section class="scene" aria-label="Invitation">
           <h2 class="names-line">Dhriti <span class="amp">&amp;</span> Dhaval</h2>
           <svg class="orn" viewBox="0 0 150 14" aria-hidden="true"><path d="M0 7H62M88 7H150" stroke="currentColor" stroke-width=".8"/><path d="M75 1.5L80.5 7 75 12.5 69.5 7Z" fill="none" stroke="currentColor" stroke-width=".8"/><circle cx="64" cy="7" r="1.2" fill="currentColor"/><circle cx="86" cy="7" r="1.2" fill="currentColor"/></svg>
-          <p class="lede">With the blessings of God and our parents, we request the joy of your company as our daughter Dhriti takes her seven vows with Dhaval, son of Chhaya, and begins a new life together.</p>
+          <p class="lede">With the blessings of God, we request the joy of your company as our daughter Dhriti takes her seven vows with Dhaval, son of Chhaya, and begins a new life together.</p>
           <p class="eyebrow" style="margin-top:clamp(10px,2.5vh,22px)">With love from</p>
           <div class="families one">
             <div><b>Uma &amp; Govind</b><span>THE NANDANWARS</span></div>
